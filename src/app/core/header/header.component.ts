@@ -11,21 +11,18 @@ export class HeaderComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
-  openMenu() {
-    const activador = !this.open;
-    console.log(activador);
-    
-    if (activador) {
-      this.display = 'none';
-    } else {
+  openMenu(position: number) {
+    this.open = !this.open;
+
+    if (this.open) {
       this.display = 'block';
+    } else {
+      this.display = 'none';
     }
 
-    const menu = document.getElementById('menu');
+    const menu = document.getElementById(`menu${position}`);
     menu.style.display = this.display;
   }
 }

@@ -8,16 +8,16 @@
     <form>
         <div>
             <input type="text"
-                class="focus:border-indigo-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border-2 border-gray-200 rounded-md py-2 px-1"
+                class="focus:border-indigo-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border-2 border-gray-200 bg-gray-200 rounded-md py-2 px-1 mt-2"
                 placeholder="Nombres">
             <input type="text"
-                class="focus:border-indigo-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border-2 border-gray-200 rounded-md py-2 px-1 mt-1"
+                class="focus:border-indigo-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border-2 border-gray-200 bg-gray-200 rounded-md py-2 px-1 mt-2"
                 placeholder="Apellidos">
             <input type="email"
-                class="focus:border-indigo-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border-2 border-gray-200 rounded-md py-2 px-1 mt-1"
+                class="focus:border-indigo-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border-2 border-gray-200 bg-gray-200 rounded-md py-2 px-1 mt-2"
                 placeholder="Email">
             <input type="password"
-                class="focus:border-indigo-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border-2 border-gray-200 rounded-md py-2 px-1 mt-1"
+                class="focus:border-indigo-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border-2 border-gray-200 bg-gray-200 rounded-md py-2 px-1 mt-2"
                 placeholder="Contraseña">
             <button
                 class="bg-gradient-to-r from-indigo-600 to-pink-600 rounded-md p-2 text-white w-full mt-2">Registrarse</button>
@@ -33,7 +33,7 @@
             <p class="text-indigo-700 dark:text-pink-500">Ya tienes una cuenta?</p>
         </div>
         <div>
-            <p class="text-pink-500 dark:text-white cursor-pointer ml-1"> Iniciar sesion</p>
+            <a [routerLink]="['/login']" class="text-pink-500 dark:text-white cursor-pointer ml-1"> Iniciar sesion</a>
         </div>
     </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../../../core/authentication/authentication.service';
 
 @Component({
@@ -7,13 +8,26 @@ import { AuthenticationService } from '../../../../core/authentication/authentic
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private authServices: AuthenticationService) {}
+  public formGroup: FormGroup;
+  constructor(
+    private authServices: AuthenticationService,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-    this.signin();
+    this.buildForm();
+  }
+
+  buildForm() {
+    this.formGroup = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+    });
   }
 
   signin() {
-    this.authServices.signin().subscribe((data) => console.log(data));
+    this.authServices
+      .signin(this.formGroup.value)
+      .subscribe((data) => console.log(data));
   }
 }

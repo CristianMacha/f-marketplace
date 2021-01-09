@@ -11,11 +11,21 @@ export class HeaderComponent implements OnInit {
   open = false;
   display: string;
 
-  person: IPerson;
+  person: IPerson = {
+    names: '',
+    email: '',
+    photo: '',
+    sexo: true,
+    surnames: '',
+  };
 
   constructor(public authServices: AuthenticationService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.authServices.isAuth()) {
+      this.getAuthPerson();
+    }
+  }
 
   openMenu(position: number) {
     this.open = !this.open;

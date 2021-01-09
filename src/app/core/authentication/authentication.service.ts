@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
-import { ILogin, IResponseLogin } from '../interfaces/auth.interface';
+import { ILogin, IPerson } from '../interfaces/auth.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -26,8 +26,16 @@ export class AuthenticationService {
     return localStorage.getItem('token');
   }
 
-  getUserLogged() {
-    const token = this.getToken();
-    return this.http.get(`${this.uri}/person`)
+  getUserLogged(): Observable<IPerson> {
+    return this.http.get<IPerson>(`${this.uri}/person`);
+  }
+
+  isAuth(): boolean {
+    return localStorage.getItem('token') !== null;
+  }
+
+  logOut() {
+    console.log('here');
+    localStorage.removeItem('token');
   }
 }

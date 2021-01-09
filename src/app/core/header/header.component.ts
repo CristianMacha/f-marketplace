@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../authentication/authentication.service';
+import { IPerson } from '../interfaces/auth.interface';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +11,9 @@ export class HeaderComponent implements OnInit {
   open = false;
   display: string;
 
-  constructor() {}
+  person: IPerson;
+
+  constructor(public authServices: AuthenticationService) {}
 
   ngOnInit(): void {}
 
@@ -24,5 +28,17 @@ export class HeaderComponent implements OnInit {
 
     const menu = document.getElementById(`menu${position}`);
     menu.style.display = this.display;
+  }
+
+  getAuthPerson() {
+    this.authServices.getUserLogged().subscribe(
+      (data) => (this.person = data),
+      (error) => console.error(error)
+    );
+  }
+
+  logOut(position: number) {
+    this.authServices.logOut();
+    this.openMenu(position);
   }
 }

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { AuthenticationService } from '../../../../core/authentication/authentication.service';
 
 @Component({
@@ -11,7 +13,8 @@ export class LoginComponent implements OnInit {
   public formGroup: FormGroup;
   constructor(
     private authServices: AuthenticationService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -26,8 +29,9 @@ export class LoginComponent implements OnInit {
   }
 
   signin() {
-    this.authServices
-      .signin(this.formGroup.value)
-      .subscribe((data) => this.authServices.setToken(data));
+    this.authServices.signin(this.formGroup.value).subscribe((data) => {
+      this.authServices.setToken(data);
+      this.router.navigateByUrl('/home');
+    });
   }
 }

@@ -3,6 +3,15 @@ export interface ILogin {
   password: string;
 }
 
+interface IPerson {
+  names: string;
+  surnames: string;
+  email: string;
+  photo: string;
+  sexo: boolean;
+}
+
 export interface IResponseLogin {
-  token: string;
+  jwt: string;
+  infoPerson: IPerson;
 }

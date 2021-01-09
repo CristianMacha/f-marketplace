@@ -28,6 +28,6 @@ export class LoginComponent implements OnInit {
   signin() {
     this.authServices
       .signin(this.formGroup.value)
-      .subscribe((data) => console.log(data));
+      .subscribe((data) => this.authServices.setToken(data));
   }
 }

@@ -14,7 +14,20 @@ export class AuthenticationService {
     this.uri = `${environment.url}auth`;
   }
 
-  signin(data: ILogin): Observable<IResponseLogin> {
-    return this.http.post<IResponseLogin>(`${this.uri}/signin`, data);
+  signin(data: ILogin): Observable<string> {
+    return this.http.post<string>(`${this.uri}/signin`, data);
+  }
+
+  setToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
+  getUserLogged() {
+    const token = this.getToken();
+    return this.http.get(`${this.uri}/person`)
   }
 }
